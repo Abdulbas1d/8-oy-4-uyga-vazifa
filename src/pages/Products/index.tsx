@@ -37,6 +37,7 @@ const Products: FC = () => {
   const [products, setProducts] = useState<Products[]>([])
   const [paginationCount, setPaginationCount] = useState<number>(3)
   const [currentPage, setCurrentPage] = useState<number>(1)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -62,7 +63,7 @@ const Products: FC = () => {
         if (response.status == 200) {
           setProducts(response.data.data)
           setFilterProduct(response.data.meta)
-          setPaginationCount(response.data.meta.pagination?.pageCount || 1)
+          setPaginationCount(response.data.meta.pagination?.total || 1)
         }
       })
   }
